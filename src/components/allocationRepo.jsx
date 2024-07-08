@@ -838,7 +838,6 @@ const AllocationReport = () => {
               value={selectedBill}
               onChange={(e) => {
                 setSelectedBill(e.target.value);
-                setDepartmentAmounts([]);
                 setError("");
               }}
             >

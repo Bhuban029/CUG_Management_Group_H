@@ -34,7 +34,7 @@ const Sidebar = () => {
             <NavLink to="/dealer/planReport">Plan-Wise Billing Report</NavLink>
           </li>
         </ul>
-        <button className="logoutbtn" onClick={() => handleLogout}>
+        <button className="logoutbtn" onClick={handleLogout}>
           Logout <MdLogout />
         </button>
       </nav>

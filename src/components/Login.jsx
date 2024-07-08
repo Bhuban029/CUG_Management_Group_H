@@ -46,12 +46,6 @@ const Login = () => {
     }
     try {
       const collectionName = user === "Dealer" ? "dealers" : "admin";
-      // const q = query(
-      //   collection(db, collectionName),
-      //   where("name", "==", name),
-      //   where("email", "==", email),
-      //   where("password", "==", password)
-      // );
       const q = query(
         collection(db, collectionName),
         where(`${user}_Name`, "==", name),
@@ -63,8 +57,8 @@ const Login = () => {
         const userData = querySnapshot.docs[0].data();
         localStorage.setItem("user", JSON.stringify(userData));
         setUserType(true);
-        if (user === "Dealer") navigate("/dealer/addcug");
-        else navigate("/admin/createDealer");
+        if (user === "Dealer") navigate("/dealer/homePage");
+        else navigate("/admin/homePage");
       } else {
         setError("Invalid credentials");
       }
