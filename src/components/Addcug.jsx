@@ -113,6 +113,27 @@ const Addcug = () => {
     setAllocationNum(cugDetails.Employee_AllocationNo);
     setPlan(cugDetails.Employee_Plan);
   };
+  //---------------Fetching Plans from Plan DB-----------
+  const [plans, setPlans] = useState([]);
+  const fetchPlans = () => {
+    const db = getDatabase(Fapp);
+    const planRef = ref(db, "Plan/");
+    onValue(planRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        const planList = Object.entries(data).map(([name, plan]) => ({
+          name,
+          value: plan.Plan_Value,
+        }));
+        setPlans(planList);
+      } else {
+        setPlans([]);
+      }
+    });
+  };
+  useEffect(() => {
+    fetchPlans();
+  }, []);
 
   // --------------Handling Submit----------------
   const handleSubmit = (event) => {
@@ -131,6 +152,8 @@ const Addcug = () => {
       plan === ""
     )
       alert("Please Enter All the Field");
+    else if (EmpNo.length !== 12) alert("Employee Id must be 12 digit");
+    else if (billUnit.length !== 7) alert("Bill Unit must be 7 digit");
     else {
       set(ref(db, "Employees3/" + EmpNo), {
         Employee_Name: EmpName,
@@ -357,9 +380,15 @@ const Addcug = () => {
               onChange={(e) => setPlan(e.target.value)}
               disabled={isDisabled}
             >
-              <option value="A">A 74.61</option>
+              {/* <option value="A">A 74.61</option>
               <option value="B">B 59.05</option>
-              <option value="C">C 39.9</option>
+              <option value="C">C 39.9</option> */}
+              {plans.map((plann, index) => (
+                <option key={index} value={plann.name}>
+                  {" "}
+                  Plan {plann.name} {plann.value}
+                </option>
+              ))}
             </select>
           </div>
           <div className="col-12">

@@ -34,14 +34,20 @@ const CugStatusReport = () => {
           }
           if (
             item.status === "Inactive" &&
-            !activeCugSet.has(item.Employee_CUG)
+            !activeCugSet.has(item.Employee_CUG) &&
+            !inactiveCugSet.has(item.Employee_CUG)
           ) {
-            if (!inactiveCugSet.has(item.Employee_CUG)) {
-              inactiveCugSet.add(item.Employee_CUG);
-              if (status === "2") {
-                totalInactive += 1;
-                return true;
-              }
+            // if (!inactiveCugSet.has(item.Employee_CUG)) {
+            //   inactiveCugSet.add(item.Employee_CUG);
+            //   if (status === "2") {
+            //     totalInactive += 1;
+            //     return true;
+            //   }
+            // }
+            inactiveCugSet.add(item.Employee_CUG);
+            if (status === "2") {
+              totalInactive += 1;
+              return true;
             }
           }
           return false;
