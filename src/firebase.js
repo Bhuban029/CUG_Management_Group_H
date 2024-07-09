@@ -13,7 +13,7 @@ const firebaseConfig = {
   storageBucket: "cugmanagement-3f4f0.appspot.com",
   messagingSenderId: "145760142049",
   appId: "1:145760142049:web:7d7d115d7ba4b445202da0",
-  measurementId: "G-T7TZT6GRTT"
+  measurementId: "G-T7TZT6GRTT",
   databaseURL: "https://cugmanagement-3f4f0-default-rtdb.firebaseio.com/",
 };
 
